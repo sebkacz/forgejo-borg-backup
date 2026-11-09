@@ -1,5 +1,5 @@
 # Forgejo Borg Backup Script
-A backup script template for self-hosted Forgejo instances, utilising Borg Backup, rsync and ntfy.
+A script template for remote backups of a self-hosted Forgejo instance, utilising Borg Backup, rsync and ntfy.
 
 All of the following assumes you are running a docker instance of Forgejo on a Linux system, and are using the SQLite database implementation.
 
