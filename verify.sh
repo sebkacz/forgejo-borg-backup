@@ -38,6 +38,7 @@ fi
 
 DONE=$(date +%s)
 COMPLETION_TIME=$(( $DONE - $START ))
-curl -d "Verification task took $(date -d@$COMPLETION_TIME +%H:%M:%S )" \
+TIME=$(printf '%02dh:%02dm:%02ds\n' $((COMPLETION_TIME/3600)) $((COMPLETION_TIME%3600/60)) $((COMPLETION_TIME%60)))
+curl -d "Verification task took $TIME" \
 -H "t: Verification completed" \
 $NTFY
