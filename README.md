@@ -37,17 +37,16 @@ Instead of exposing ports, adding complexity and creating potential security ris
 
 Add your servers (main and remotes), and make sure SSH is enabled for them in the Tailscale console.
 
-**Make sure you have generated SSH keys for your primary user (non-root) on your main server, and the keys have been copied to the remote servers *using their Tailscale IP/FQDN*.**
-Without doing this step, rsync will fail to copy because you haven't trusted the server's fingerprint.
+Add your SSH keys from your laptop or computer to the remote servers. You'll want to harden the remote servers by disabling password authentication, and disabling root logins. Adding your keys now means you can continue to access the server while setting it up, and so you can still manage it whenever you're nearby it.
 
-> [!TIP]
-> Also add your keys from your laptop or computer to the remote servers, in case you ever need to access it whenever you're physically near it.
-
-Harden the remote servers by disabling password authentication, and disabling root logins. There's a few ssh hardening tutorials out there, just find one and follow the steps. But, for the love of god, [don't disable PAM](https://sshhole.com)
+There's a few ssh hardening tutorials out there, just find one and follow the steps. But, for the love of god, [don't disable PAM](https://sshhole.com)
 
 > [!IMPORTANT]
+> Make sure that you can connect to the remote servers from your main server using the Tailscale IP/FQDN. If set up correctly, you should be able to connect without having sent the main server's SSH keys or by entering a password.
+
+> [!INFO]
 > While I've set up Tailscale for my deployment, Cloudflare's Zero Trust One Client Tunnel (please stop changing names) thing could work, but is currently untested.
-> As long as it creates a private device-to-device network, they should be fine.
+> As long as it creates an on-demand, private, device-to-device network, anything should be fine.
 
 ### Borg
 This is the main star of the show, ~~Patrick Stewart~~ ~~Jean-Luc Picard~~ ~~Locutus of Borg~~ BorgBackup.
@@ -109,9 +108,11 @@ It's recommended to verify the integrity of the backups between once a week to o
 ## Caveats
 
 ### Forgejo shutdown
-As stated above, the Forgejo documentation highly recommends that Forgejo is shut down every time to process a backup. This is to ensure that there are no file or database writes while the backup occurs, potentially corrupting data.
+As stated above, the Forgejo documentation highly recommends that Forgejo is shut down every time to process a backup. The script does it by shutting down the docker container completely. This is to ensure that there are no file or database writes while the backup occurs, potentially corrupting data.
 
-To get around the system being taken off-line frequently, you can simply run the backup less frequently, but the risk of losing data goes up the longer between runs.
+I am looking into running the shutdown commands directly on the Forgejo binary, by flushing the queues then shutting the server down, but I'll need to investigate that path later.
+
+To get around the system being taken off-line as often, you can simply run the backup less frequently, but the risk of losing data goes up the longer between runs.
 
 What's the correct answer? Whatever you're comfortable with.
 
