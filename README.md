@@ -53,7 +53,7 @@ This is the main star of the show, ~~Patrick Stewart~~ ~~Jean-Luc Picard~~ ~~Loc
 
 A little more leg work to get set up, but better than having dozens of large zip files, and it supports verification to make sure the data is still intact after backing up/sending over to the remote servers.
 
-It's recommend to download the binary from the BorgBackup website, as Ubuntu has the (almost) most recent build, but Debian carries an older stable build (v1.4.0 as of writing).
+It's recommend to download the binary from the BorgBackup website, as Ubuntu has the (almost) most recent build (v1.4.4), but Debian carries an older stable build (v1.4.0 instead of v1.4.5 as of writing).
 Better to have consistency over convenience.
 
 Initialise your backup with `borg init --encryption=repokey /path/to/backup/forgejo` on the main server. For me, the path would be `/var/borg/forgejo`.
