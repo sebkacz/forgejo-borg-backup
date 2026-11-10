@@ -44,7 +44,7 @@ There's a few SSH hardening tutorials out there, just find one and follow the st
 > [!IMPORTANT]
 > Make sure that you can connect to the remote servers from your main server using the Tailscale IP/FQDN. If set up correctly, you should be able to connect without having sent the main server's SSH keys or by entering a password.
 
-> [!INFO]
+> [!NOTE]
 > While I've set up Tailscale for my deployment, Cloudflare's Zero Trust One Client Tunnel (please stop changing names) thing could work, but is currently untested.
 > As long as it creates an on-demand, private, device-to-device network, anything should be fine.
 
