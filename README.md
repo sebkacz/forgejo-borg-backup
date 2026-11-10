@@ -39,7 +39,7 @@ Add your servers (main and remotes), and make sure SSH is enabled for them in th
 
 Add your SSH keys from your laptop or computer to the remote servers. You'll want to harden the remote servers by disabling password authentication, and disabling root logins. Adding your keys now means you can continue to access the server while setting it up, and so you can still manage it whenever you're nearby it.
 
-There's a few ssh hardening tutorials out there, just find one and follow the steps. But, for the love of god, [don't disable PAM](https://sshhole.com)
+There's a few SSH hardening tutorials out there, just find one and follow the steps. But, for the love of god, [don't disable PAM](https://sshhole.com)
 
 > [!IMPORTANT]
 > Make sure that you can connect to the remote servers from your main server using the Tailscale IP/FQDN. If set up correctly, you should be able to connect without having sent the main server's SSH keys or by entering a password.
